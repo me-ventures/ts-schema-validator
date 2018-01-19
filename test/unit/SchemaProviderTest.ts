@@ -2,7 +2,6 @@ import {assert as Assert } from "chai";
 import {} from "mocha";
 import {} from "node";
 import * as sinon from "sinon";
-import * as TJS from "typescript-json-schema";
 import { SchemaProvider } from "../../src";
 
 describe(`SchemaProvider`, function(){
