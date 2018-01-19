@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "test": "./node_modules/.bin/tsc && ./node_modules/.bin/mocha --recursive ./dist/test/unit",
-    "postinstall": "./node_modules/.bin/tsc --project ./tsconfig.json"
+    "postinstall": "./node_modules/.bin/tsc --project ./tsconfig.json || echo done"
   },
   "repository": "git+https://github.com/me-ventures/ts-schema-validator.git",
   "author": "Convenior",
