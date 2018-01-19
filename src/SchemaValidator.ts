@@ -19,4 +19,8 @@ export class SchemaValidator {
     public getValidator(): Ajv.Ajv {
         return this.validator;
     }
+
+    public getSchema(): object|any {
+        return this.schema;
+    }
 }
