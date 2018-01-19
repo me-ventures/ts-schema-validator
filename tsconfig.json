@@ -3,9 +3,23 @@
     "module": "commonjs",
     "target": "es6",
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": ["mocha"],
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "lib": [
+      "es6"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
   "files": [
-    "lib/index.ts"
+    "node_modules/@types/node/index.d.ts"
   ]
 }
