@@ -6,10 +6,10 @@ import * as TJS from "typescript-json-schema";
 import { SchemaProvider } from "../../src";
 
 describe(`SchemaProvider`, function(){
+    this.timeout(30000);
+
     describe(`getSchemaForSymbol`, function() {
         it(`should get a schema for a given symbol`, async function(){
-            this.timeout(30000);
-
             const sut = new SchemaProvider({
                 path: "test/samples/ISampleInterface.ts"
             });
