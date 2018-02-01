@@ -1,0 +1,17 @@
+version: 2
+jobs:
+ build:
+    docker:
+      - image: meventures/angular-cli:3.1.0
+    working_directory: /app
+    parallelism: 1
+    environment:
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: yarn install
+      - run:
+          name: run tests
+          command: yarn run test
+
