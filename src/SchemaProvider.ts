@@ -6,6 +6,7 @@ export class SchemaProvider {
     private program: TJS.Program;
     private generator: TJS.JsonSchemaGenerator;
     private cache = new Map<string, Definition|any>();
+    private includeReffedDefinitions: boolean;
 
     constructor(
         params: ISchemaProviderParams
@@ -17,6 +18,8 @@ export class SchemaProvider {
 
         // optionally pass ts compiler options
         const compilerOptions: TJS.CompilerOptions = params.compilerOptions || {};
+
+        this.includeReffedDefinitions = !! params.includeReffedDefinitions;
 
         this.program = TJS.getProgramFromFiles([
             resolve(params.path)
@@ -41,7 +44,7 @@ export class SchemaProvider {
         if ( ! this.cache.has(symbol) ) {
             const draft06 = this.generator.getSchemaForSymbol(
                 symbol,
-                true
+                this.includeReffedDefinitions
             );
 
             this.cache.set(symbol, draft06);
@@ -87,4 +90,5 @@ export interface ISchemaProviderParams {
     path: string;
     settings ?: TJS.PartialArgs;
     compilerOptions ?: TJS.CompilerOptions;
+    includeReffedDefinitions ?: boolean;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@convenior/ts-schema-validator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "validate typescript stuff at runtime",
   "main": "dist/src/index.js",
   "scripts": {
