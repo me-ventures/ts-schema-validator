@@ -1,6 +1,9 @@
 # ts-schema-validator
 validates typescript stuff at runtime!
 
+
+[![Version npm](https://img.shields.io/npm/v/@convenior/ts-schema-validator.svg?style=flat-square)](https://www.npmjs.com/package/@convenior/ts-schema-validator)
+
 # install
 `yarn add @convenior/ts-schema-validator`
 
