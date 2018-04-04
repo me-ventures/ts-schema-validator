@@ -1,6 +1,5 @@
 import { resolve } from "path";
 import * as TJS from "typescript-json-schema";
-const migrate = require("json-schema-migrate");
 
 export class SchemaProvider {
     private program: TJS.Program;
@@ -11,7 +10,9 @@ export class SchemaProvider {
         params: ISchemaProviderParams
     ) {
         // optionally pass argument to schema generator
-        const settings: TJS.PartialArgs = params.settings || {};
+        const settings: TJS.PartialArgs = params.settings || {
+            required: true,
+        };
 
         // optionally pass ts compiler options
         const compilerOptions: TJS.CompilerOptions = params.compilerOptions || {};
@@ -37,9 +38,10 @@ export class SchemaProvider {
         }
 
         if ( ! this.cache.has(symbol) ) {
-            const draft04 = this.generator.getSchemaForSymbol(symbol);
-            const draft06 = migrate.draft6(draft04);
-            draft06.$schema = "http://json-schema.org/draft-06/schema#";
+            const draft06 = this.generator.getSchemaForSymbol(
+                symbol,
+                true
+            );
 
             this.cache.set(symbol, draft06);
         }
