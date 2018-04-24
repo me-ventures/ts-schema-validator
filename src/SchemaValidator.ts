@@ -35,6 +35,33 @@ export class SchemaValidator {
         return isValid;
     }
 
+    public async validateSync( data: object|any ): boolean {
+        const isValid = this.validator.validate(this.schema, data);
+
+        if ( ! isValid ) {
+            throw new Error(JSON.stringify(this.validator.errors));
+        }
+
+        if ( this.customValidators.size > 0 ) {
+            for ( const validatorName of this.customValidators.keys() ) {
+                const validator = this.customValidators.get(validatorName);
+
+                const customValidatorOk: boolean = await validator(
+                    this.schema,
+                    data
+                );
+
+                if ( ! customValidatorOk ) {
+                    throw new Error(
+                        `custom validation check [${validatorName}] failed`
+                    );
+                }
+            }
+        }
+
+        return isValid;
+    }
+
     public getValidator(): Ajv.Ajv {
         return this.validator;
     }
